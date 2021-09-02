@@ -1,10 +1,11 @@
+// all ID's are called here
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('search-btn');
 const bookContainer = document.getElementById('book-container')
 const totalResults = document.getElementById('totalResults')
 const errorDiv = document.getElementById('error');
 
-
+// added addEventListener to searchBtn
 searchBtn.addEventListener('click', function () {
     const searchText = searchInput.value;
     // clear section
@@ -12,10 +13,11 @@ searchBtn.addEventListener('click', function () {
     totalResults.innerText = '';
     searchInput.value = '';
 
+
     // blank search handel
     if (searchText == "") {
+        errorDiv.classList.add('bg-danger')
         errorDiv.innerText = 'Please  Enter A Book Name!!'
-        errorDiv.classList.add('bg-success')
         return;
     }
 
@@ -31,14 +33,15 @@ const showData = data => {
     // error handeling on no results
     if (data.numFound === 0) {
         errorDiv.innerText = "No Result's Found"
-        errorDiv.classList.add('bg-success')
+        errorDiv.classList.add('bg-danger')
     } else {
         errorDiv.innerText = '';
-        errorDiv.classList.remove('bg-success')
+        errorDiv.classList.remove('bg-danger')
     }
-
+    // captured data.docs into dataArray
     const dataArray = data.docs.slice(0, 20);
 
+    // applied forEach on dataArray
     dataArray.forEach(element => {
         //created a div 
         const div = document.createElement('div');
@@ -60,8 +63,9 @@ const showData = data => {
         //append div to bookContainer
         bookContainer.appendChild(div);
 
-        // pass total results to error div
-        errorDiv.innerHTML = `<p class="text-white bg-success my-0 py-2">Results Found: <span class="">${data.numFound}</span></p>`;
+        // pass total resultsto error div
+
+        errorDiv.innerHTML = `<p class="text-white bg-success  py-2">Results Found: ${data.numFound} | Result's Showd : ${dataArray.length} </p>`;
     });
 
 
