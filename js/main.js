@@ -37,7 +37,7 @@ const showData = data => {
         errorDiv.classList.remove('bg-success')
     }
 
-    const dataArray = data.docs;
+    const dataArray = data.docs.slice(0, 20);
 
     dataArray.forEach(element => {
         //created a div 
