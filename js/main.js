@@ -4,9 +4,11 @@ const searchBtn = document.getElementById('search-btn');
 const bookContainer = document.getElementById('book-container')
 const totalResults = document.getElementById('totalResults')
 const errorDiv = document.getElementById('error');
+const spinner = document.getElementById('spiner')
 
 // added addEventListener to searchBtn
 searchBtn.addEventListener('click', () => {
+    spinner.classList.remove('d-none')
     const searchText = searchInput.value;
     // clear section
     bookContainer.innerHTML = '';
@@ -16,6 +18,7 @@ searchBtn.addEventListener('click', () => {
 
     // blank search handel
     if (searchText == "") {
+        spinner.classList.add('d-none');
         errorDiv.classList.add('bg-danger')
         errorDiv.innerText = 'Please  Enter A Book Name!!'
         return;
@@ -32,6 +35,7 @@ searchBtn.addEventListener('click', () => {
 const showData = data => {
     // error handeling on no results
     if (data.numFound === 0) {
+        spinner.classList.add('d-none');
         errorDiv.innerText = "No Result's Found"
         errorDiv.classList.add('bg-danger')
     } else {
@@ -43,6 +47,7 @@ const showData = data => {
 
     // applied forEach on dataArray
     dataArray.forEach(element => {
+        spinner.classList.add('d-none');
         //created a div 
         const div = document.createElement('div');
         //add class to div
