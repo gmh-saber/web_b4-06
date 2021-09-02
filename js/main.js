@@ -6,7 +6,7 @@ const totalResults = document.getElementById('totalResults')
 const errorDiv = document.getElementById('error');
 
 // added addEventListener to searchBtn
-searchBtn.addEventListener('click', function () {
+searchBtn.addEventListener('click', () => {
     const searchText = searchInput.value;
     // clear section
     bookContainer.innerHTML = '';
@@ -53,7 +53,7 @@ const showData = data => {
                 <img style="height: 400px;" src="https://covers.openlibrary.org/b/id/${element.cover_i}-M.jpg" class="w-100" alt="No Image Found" />
             </div>
             <div class="py-2 d-flex justify-content-between  align-items-center d-md-block text-md-center ">
-                <h1>${element.title.slice(0, 20)}</h1>
+                <h1>${element.title}</h1>
                 <h4>Author: ${element.author_name[0]}</h4>
                 <h5>First Publish Year: ${element.first_publish_year}</h5>
                 <h5>Publisher: ${element.publisher[0]}</h5>
@@ -65,7 +65,7 @@ const showData = data => {
 
         // pass total resultsto error div
 
-        errorDiv.innerHTML = `<p class="text-white bg-success  py-2">Results Found: ${data.numFound} | Result's Showd : ${dataArray.length} </p>`;
+        errorDiv.innerHTML = `<p class="text-white bg-success  py-2">Results Found: ${data.numFound}</p>`;
     });
 
 
