@@ -2,7 +2,6 @@
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('search-btn');
 const bookContainer = document.getElementById('book-container')
-const totalResults = document.getElementById('totalResults')
 const errorDiv = document.getElementById('error');
 const spinner = document.getElementById('spiner')
 
@@ -12,7 +11,7 @@ searchBtn.addEventListener('click', () => {
     const searchText = searchInput.value;
     // clear section
     bookContainer.innerHTML = '';
-    totalResults.innerText = '';
+    errorDiv.textContent = '';
     searchInput.value = '';
 
 
@@ -20,7 +19,7 @@ searchBtn.addEventListener('click', () => {
     if (searchText == "") {
         spinner.classList.add('d-none');
         errorDiv.classList.add('bg-danger')
-        errorDiv.innerText = 'Please  Enter A Book Name!!'
+        errorDiv.innerHTML = `<p class="py-2">Please  Enter A Book Name!!</p>`
         return;
     }
 
@@ -36,10 +35,10 @@ const showData = data => {
     // error handeling on no results
     if (data.numFound === 0) {
         spinner.classList.add('d-none');
-        errorDiv.innerText = "No Result's Found"
+        errorDiv.innerHTML = `<p class="py-2">No Result's Found</p>`;
         errorDiv.classList.add('bg-danger')
     } else {
-        errorDiv.innerText = '';
+        errorDiv.textContent = '';
         errorDiv.classList.remove('bg-danger')
     }
     // captured data.docs into dataArray
